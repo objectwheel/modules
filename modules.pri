@@ -9,7 +9,7 @@ for (FILE, FILES_TO_COPY) {
 }
 
 # qmltypes files are only needed by intellisense of Objectwheel
-macx:windows:linux {
+!android:!ios {
     QMAKE_POST_LINK += qmlplugindump -nonrelocatable $$basename(DESTDIR) $$VERSION \
                        $$shell_quote($$shell_path($$OUT_PWD/../Modules)) > \
                        $$shell_quote($$shell_path($$OUT_PWD/$$DESTDIR/plugins.qmltypes))
