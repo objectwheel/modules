@@ -3,7 +3,6 @@ CONFIG  += plugin c++14 strict_c++
 TARGET   = objectwheelmodule
 DESTDIR  = ../Modules/Objectwheel
 QT      += qml
-DEFINES += QT_QML_DEBUG_NO_WARNING
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000
 
 OW_MODULE_VERSION_MAJOR = 1
