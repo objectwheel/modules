@@ -26,7 +26,7 @@ int Android::androidSdkVersion() const
 #if defined(Q_OS_ANDROID)
     return QtAndroid::androidSdkVersion();
 #else
-    qWarning("Android.androidSdkVersion: This function is only available Android!");
+    qWarning("Android.androidSdkVersion: This function is only available on Android!");
     return -1;
 #endif
 }
@@ -37,7 +37,7 @@ bool Android::shouldShowRequestPermissionRationale(const QString& permission) co
     return QtAndroid::shouldShowRequestPermissionRationale(permission);
 #else
     Q_UNUSED(permission)
-    qWarning("Android.shouldShowRequestPermissionRationale: This function is only available Android!");
+    qWarning("Android.shouldShowRequestPermissionRationale: This function is only available on Android!");
     return false;
 #endif
 }
@@ -48,7 +48,7 @@ Android::PermissionResult Android::checkPermission(const QString& permission) co
     return (PermissionResult) QtAndroid::checkPermission(permission);
 #else
     Q_UNUSED(permission)
-    qWarning("Android.checkPermission: This function is only available Android!");
+    qWarning("Android.checkPermission: This function is only available on Android!");
     return Denied;
 #endif
 }
@@ -60,7 +60,7 @@ QJSValue Android::requestPermissionsSync(const QStringList& permissions, int tim
 #else
     Q_UNUSED(permissions)
     Q_UNUSED(timeoutMs)
-    qWarning("Android.requestPermissionsSync: This function is only available Android!");
+    qWarning("Android.requestPermissionsSync: This function is only available on Android!");
     return QJSValue();
 #endif
 }
@@ -76,6 +76,6 @@ void Android::requestPermissions(const QStringList& permissions, const QJSValue&
 #else
     Q_UNUSED(permissions)
     Q_UNUSED(callbackFunc)
-    qWarning("Android.requestPermissions: This function is only available Android!");
+    qWarning("Android.requestPermissions: This function is only available on Android!");
 #endif
 }
