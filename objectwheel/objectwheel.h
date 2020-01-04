@@ -1,5 +1,5 @@
-#ifndef OW_H
-#define OW_H
+#ifndef OBJECTWHEEL_H
+#define OBJECTWHEEL_H
 
 #include <QObject>
 
@@ -11,8 +11,7 @@ class Objectwheel : public QObject
 public:
     explicit Objectwheel(QObject* parent = nullptr);
 
-public slots:
-    QString toLocalFile(const QUrl& url);
+    QString toLocalFile(const QUrl& url) const;
 };
 
-#endif // OW_H
+#endif // OBJECTWHEEL_H

@@ -3,6 +3,7 @@ CONFIG  += plugin c++14 strict_c++
 TARGET   = objectwheelmodule
 DESTDIR  = ../Modules/Objectwheel
 QT      += qml
+android:QT += androidextras
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000
 
 OW_MODULE_VERSION_MAJOR = 1
@@ -16,10 +17,12 @@ INCLUDEPATH += $$PWD
 DEPENDPATH  += $$PWD
 
 HEADERS += $$PWD/objectwheel.h \
+           $$PWD/android.h \
            $$PWD/translation.h
 
 SOURCES += $$PWD/objectwheelmodule.cpp \
            $$PWD/objectwheel.cpp \
+           $$PWD/android.cpp \
            $$PWD/translation.cpp
 
 OTHER_FILES += $$PWD/qmldir
