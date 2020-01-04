@@ -49,7 +49,7 @@ Android::PermissionResult Android::checkPermission(const QString& permission) co
 #else
     Q_UNUSED(permission)
     qWarning("Android.checkPermission: This function is only available on Android!");
-    return Denied;
+    return AccessDenied;
 #endif
 }
 

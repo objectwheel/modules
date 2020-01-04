@@ -12,8 +12,8 @@ class Android : public QObject
 
 public:
     enum PermissionResult {
-        PermissionGranted,
-        PermissionDenied
+        AccessGranted,
+        AccessDenied
     };
     Q_ENUM(PermissionResult)
 
