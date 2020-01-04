@@ -11,6 +11,7 @@ class Objectwheel : public QObject
 public:
     explicit Objectwheel(QObject* parent = nullptr);
 
+public slots:
     QString toLocalFile(const QUrl& url) const;
 };
 

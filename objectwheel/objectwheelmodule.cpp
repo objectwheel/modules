@@ -28,11 +28,11 @@ public:
         });
         qmlRegisterSingletonType<Android>(uri, major, minor, Android::staticMetaObject.className(),
                                           [] (QQmlEngine* e, QJSEngine*) -> QObject* {
-            return new Android(e);
+            return new Android(e, e);
         });
         qmlRegisterSingletonType<Translation>(uri, major, minor, Translation::staticMetaObject.className(),
                                               [] (QQmlEngine* e, QJSEngine*) -> QObject* {
-            return new Translation(e);
+            return new Translation(e, e);
         });
 
         qmlRegisterModule(uri, major, minor);

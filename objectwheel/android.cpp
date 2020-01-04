@@ -1,22 +1,23 @@
 #include <android.h>
 #include <QHash>
-#include <QJSValue>
+#include <QQmlEngine>
 
 #if defined(Q_OS_ANDROID)
 #include <QtAndroid>
 #endif
 
 #if defined(Q_OS_ANDROID)
-static QJSValue mapToJSObject(const QtAndroid::PermissionResultMap& resultMap)
+static QJSValue mapToJSObject(QQmlEngine* engine, const QtAndroid::PermissionResultMap& resultMap)
 {
-    QJSValue object;
+    QJSValue object = engine->newObject();
     foreach (const QString& key, resultMap.keys())
         object.setProperty(key, (Android::PermissionResult) resultMap.value(key));
     return object;
 }
 #endif
 
-Android::Android(QObject* parent) : QObject(parent)
+Android::Android(QQmlEngine* engine, QObject* parent) : QObject(parent)
+  , m_engine(engine)
 {
 }
 
@@ -55,7 +56,7 @@ Android::PermissionResult Android::checkPermission(const QString& permission) co
 QJSValue Android::requestPermissionsSync(const QStringList& permissions, int timeoutMs) const
 {
 #if defined(Q_OS_ANDROID)
-    return mapToJSObject(QtAndroid::requestPermissionsSync(permissions, timeoutMs));
+    return mapToJSObject(m_engine, QtAndroid::requestPermissionsSync(permissions, timeoutMs));
 #else
     Q_UNUSED(permissions)
     Q_UNUSED(timeoutMs)
@@ -68,8 +69,8 @@ void Android::requestPermissions(const QStringList& permissions, const QJSValue&
 {
 #if defined(Q_OS_ANDROID)
     const QtAndroid::PermissionResultCallback& callback =
-            [callbackFunc] (const QtAndroid::PermissionResultMap& resultMap) mutable {
-        const_cast<QJSValue&>(callbackFunc).call({mapToJSObject(resultMap)});
+            [=] (const QtAndroid::PermissionResultMap& resultMap) mutable {
+        const_cast<QJSValue&>(callbackFunc).call({mapToJSObject(m_engine, resultMap)});
     };
     QtAndroid::requestPermissions(permissions, callback);
 #else
