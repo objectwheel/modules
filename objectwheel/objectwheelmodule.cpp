@@ -1,6 +1,5 @@
 #include <objectwheel.h>
 #include <translation.h>
-#include <android.h>
 
 #include <QQmlEngine>
 #include <QQmlExtensionPlugin>
@@ -25,10 +24,6 @@ public:
         qmlRegisterSingletonType<Objectwheel>(uri, major, minor, Objectwheel::staticMetaObject.className(),
                                               [] (QQmlEngine* e, QJSEngine*) -> QObject* {
             return new Objectwheel(e);
-        });
-        qmlRegisterSingletonType<Android>(uri, major, minor, Android::staticMetaObject.className(),
-                                          [] (QQmlEngine* e, QJSEngine*) -> QObject* {
-            return new Android(e, e);
         });
         qmlRegisterSingletonType<Translation>(uri, major, minor, Translation::staticMetaObject.className(),
                                               [] (QQmlEngine* e, QJSEngine*) -> QObject* {

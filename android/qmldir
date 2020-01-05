@@ -1,0 +1,4 @@
+module Objectwheel.Android
+plugin androidmodule
+classname AndroidModule
+typeinfo plugins.qmltypes
