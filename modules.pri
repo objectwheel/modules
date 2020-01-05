@@ -10,7 +10,10 @@ for (FILE, FILES_TO_COPY) {
 
 # qmltypes files are only needed by intellisense of Objectwheel
 !android:!ios {
-    QMAKE_POST_LINK += qmlplugindump -nonrelocatable $$basename(DESTDIR) $$VERSION \
-                       $$shell_quote($$shell_path($$OUT_PWD/../Modules)) > \
-                       $$shell_quote($$shell_path($$OUT_PWD/$$DESTDIR/plugins.qmltypes))
+    MODULE_NAME = Objectwheel
+    !equals(TARGET, "objectwheelmodule"):MODULE_NAME = Objectwheel.$$basename(DESTDIR)
+    QMAKE_POST_LINK += cd $$shell_quote($$shell_path($$clean_path($$OUT_PWD/../Modules)));\
+    qmlplugindump -nonrelocatable $$MODULE_NAME $$VERSION \
+    $$shell_quote($$shell_path(.)) > \
+    $$shell_quote($$shell_path($$relative_path($$clean_path($$OUT_PWD/$$DESTDIR/plugins.qmltypes), $$clean_path($$OUT_PWD/../Modules))))
 }
