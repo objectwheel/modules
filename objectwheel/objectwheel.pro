@@ -4,6 +4,7 @@ TARGET   = objectwheelmodule
 DESTDIR  = ../Modules/Objectwheel
 QT      += qml
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000
+unix:QMAKE_CXXFLAGS += -pedantic-errors
 
 OW_MODULE_VERSION_MAJOR = 1
 OW_MODULE_VERSION_MINOR = 0
