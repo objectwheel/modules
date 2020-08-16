@@ -12,7 +12,7 @@ for (FILE, FILES_TO_COPY) {
 !android:!ios {
     MODULE_NAME = Objectwheel
     !equals(TARGET, "objectwheelmodule"):MODULE_NAME = Objectwheel.$$basename(DESTDIR)
-    QMAKE_POST_LINK += cd $$shell_quote($$shell_path($$clean_path($$OUT_PWD/../Modules)));\
+    QMAKE_POST_LINK += cd $$shell_quote($$shell_path($$clean_path($$OUT_PWD/../Modules))) && \
     qmlplugindump -nonrelocatable $$MODULE_NAME $$VERSION \
     $$shell_quote($$shell_path(.)) > \
     $$shell_quote($$shell_path($$relative_path($$clean_path($$OUT_PWD/$$DESTDIR/plugins.qmltypes), \
